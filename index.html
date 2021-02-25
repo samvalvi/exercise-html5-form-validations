@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!--Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
+    <!--Css-->
+    <link rel="stylesheet" href="./styles.css">
+    <title>Form Validation</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="card-container">
+
+            <div class="card col-10 mx-auto mt-4 mb-4 shadow rounded-1">
+                <!--Header-->
+                <div class="card-header" id="header">                        
+                    <h2>Payment form example</h2>
+                </div>
+
+                <!--Form-->
+                <form method="post" onsubmit="formValidation();">
+
+                    <!--Alert-->
+                    <div class="alert alert-danger m-4" role="alert">
+                        Some fields are missing
+                    </div>
+                    
+                    <!--Content-->
+                    <div class="card-content m-4">
+                    
+                        <div class="row p-1">
+                                
+                            <div class="form-group col">
+                                <label for="card-number" class="fw-bold">Card #</label>
+                                <input type="text" class="form-control" id="card-number" placeholder="xxxxxxxxxxxx" required>
+                            </div>
+                                
+                            <div class="form-group col">
+                                <label for="cvc" class="fw-bold">CVC #</label>
+                                <input type="text" class="form-control" id="cvc" placeholder="0000" required>
+                            </div>
+
+                            <div class="form-group col">
+                                <label for="amount" class="fw-bold">Amount</label>
+                                <div class="input-group">
+                                    <div>
+                                        <i class="fas fa-dollar-sign col"></i>
+                                    </div>
+                                    <input type="text" class="form-control" id="amount" placeholder="Amount" required>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-1">
+
+                            <div class="form-group col">
+                                <label for="firstname" class="fw-bold">First name</label>
+                                <input type="text" class="form-control" id="firstname" required>
+                            </div>
+
+                            
+                            <div class="form-group col">
+                                <label for="lastname" class="fw-bold">Last name</label>
+                                <input type="text" class="form-control" id="lastname" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-1">
+                            
+                            <div class="form-group col">
+                                <label for="city" class="fw-bold">City</label>
+                                <input type="text" class="form-control" id="city" required>
+                            </div>
+
+                            <div class="form-group col">
+                                <label for="state" class="fw-bold">State</label>
+                                <select class="form-select" id="state">
+                                    <option selected>Pick a state</option>
+                                    <option value="alabama">Alabama</option>
+                                    <option value="california">California</option>
+                                    <option value="colorado">Colorado</option>
+                                    <option value="indiana">Indiana</option>
+                                    <option value="nebraska">Nebraska</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group col">
+                                <label for="postalcode" class="fw-bold">Postal code</label>
+                                <input type="text" class="form-control" id="postalcode" required>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-1">
+
+                            <div class="form-check-container col">
+                                <div id="title-card-payment">
+                                    <label for="card-payment" class="fw-bold">We accept:</label>
+                                </div>
+                                
+                                <div class="p-2 mt-3 rounded-1" id="card-payment" required>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        <i class="fab fa-cc-mastercard"></i>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                        <i class="fab fa-cc-visa"></i>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                        <i class="fab fa-cc-diners-club"></i>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4">
+                                        <i class="fab fa-cc-amex"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col">
+                                <label for="message" class="fw-bold">Message</label>
+                                <textarea class="form-control h-75" type="text" id="message"></textarea>
+                                <div class="form-text fs-sm-4">Add any notes here.</div>
+                            </div>
+                        </div>      
+                    
+                    </div>
+
+                    <!--Footer-->
+                    <div class="card-footer mt-5">
+                        
+                        <div class="row p-1">
+                            <div class="button-group">
+                                <button class="btn btn-primary float-end m-1" type="submit">Send</button>
+                                <button class="btn btn-secondary float-end m-1" type="reset">Cancel</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+                
+            </div>
+
+        </div>
+
+    </div>
+    
+    <!--Javscript-->
+    <script src="./app.js"></script>
+
+    <!--Bootstrap Bundle-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</body>
+</html>
