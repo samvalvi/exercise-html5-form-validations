@@ -4,17 +4,17 @@ form.addEventListener('submit', (event)=> {
 
     event.preventDefault();
 
-    let cardNumber = document.getElementById('card-number').value;
-    let cvc = document.getElementById('cvc').value;
-    let amount = document.getElementById('amount').value;
-    let firstName = document.getElementById('firstname').value;
-    let lastName = document.getElementById('lastname').value;
-    let city = document.getElementById('city').value;
-    let state = document.getElementById('state').value;
-    let textarea = document.getElementById('messages').value;
+    let cardNumber = document.getElementById('card-number');
+    let cvc = document.getElementById('cvc');
+    let amount = document.getElementById('amount');
+    let firstName = document.getElementById('firstname');
+    let lastName = document.getElementById('lastname');
+    let city = document.getElementById('city');
+    let state = document.getElementById('state');
+    let textarea = document.getElementById('messages');
 
-    if(cardNumber.trim() === '' || cvc.trim() === '' || amount.trim() === '' || firstName.trim() === '' || lastName.trim() === '' ||
-       city.trim() === '' || state.trim() === '' || textarea.trim() === '') {
+    if(cardNumber.value.trim() === '' || cvc.value.trim() === '' || amount.value.trim() === '' || firstName.value.trim() === '' || lastName.value.trim() === '' ||
+       city.value.trim() === '' || state.value.trim() === '' || textarea.value.trim() === '') {
         console.log('Some fields are missing');
 
         let parentContainer = document.getElementById('alert');
@@ -26,7 +26,18 @@ form.addEventListener('submit', (event)=> {
 
         errorAlert.innerHTML = html;
         parentContainer.appendChild(errorAlert);
+
+        let elements = [cardNumber, cvc, amount, firstName, lastName, city, state, textarea];
+        changeBackgroundColor(elements);
+
         return;
     }
 
 })
+
+
+const changeBackgroundColor = elements => {
+    elements.forEach(element => {
+        element.style.backgroundColor = '#ffcdd2';
+    })
+}
