@@ -11,6 +11,7 @@ form.addEventListener('submit', (event)=> {
     let lastName = document.getElementById('lastname');
     let city = document.getElementById('city');
     let state = document.getElementById('state');
+    let postalcode = document.getElementById('postalcode');
     let textarea = document.getElementById('messages');
     let elements = [];
 
@@ -23,10 +24,12 @@ form.addEventListener('submit', (event)=> {
 
     if(city.value.trim() === '') elements.push(city);
     if(state.value.trim() === '') elements.push(state);
+    if(postalcode.value.trim() === '') elements.push(postalcode);
 
     if(textarea.value.trim() === '') elements.push(textarea);
 
     createAlert();
+
     changeBackgroundColor(elements);
 
     return;
@@ -46,6 +49,6 @@ const createAlert = () => {
     errorAlert.className = 'm-4 alert alert-danger';
     errorAlert.role = 'alert';
     errorAlert.textContent = 'Some fields are missing';
-    
+
     parentContainer.appendChild(errorAlert);
 }
