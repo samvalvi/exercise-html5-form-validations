@@ -14,42 +14,19 @@ form.addEventListener('submit', (event)=> {
     let textarea = document.getElementById('messages');
     let elements = [];
 
-    if(cardNumber.value.trim() === '') {
-            elements.push(cardNumber);
-        } 
-    if(cvc.value.trim() === '') {
-            elements.push(cvc);
-        } 
-    if(amount.value.trim() === ''){
-            elements.push(amount);
-        } 
-    if(firstName.value.trim() === ''){
-            elements.push(firstName);
-        } 
-    if(lastName.value.trim() === ''){
-            elements.push(lastName);
-        }
-    if(city.value.trim() === ''){
-            elements.push(city);
-        } 
-    if(state.value.trim() === ''){
-            elements.push(state);
-        } 
-    if(textarea.value.trim() === '') {
-            elements.push(textarea);
-        }
+    if(cardNumber.value.trim() === '') elements.push(cardNumber);
+    if(cvc.value.trim() === '') elements.push(cvc); 
+    if(amount.value.trim() === '') elements.push(amount);
 
-    let parentContainer = document.getElementById('alert');
-    let errorAlert = document.createElement('div');
-        
-    let html = `<div class="m-4 alert alert-danger" role="alert">
-                    Some fields are missing
-                </div>`
+    if(firstName.value.trim() === '') elements.push(firstName);
+    if(lastName.value.trim() === '') elements.push(lastName);
 
-    errorAlert.innerHTML = html;
-        
-    parentContainer.appendChild(errorAlert);
+    if(city.value.trim() === '') elements.push(city);
+    if(state.value.trim() === '') elements.push(state);
 
+    if(textarea.value.trim() === '') elements.push(textarea);
+
+    createAlert();
     changeBackgroundColor(elements);
 
     return;
@@ -60,4 +37,15 @@ const changeBackgroundColor = elements => {
     elements.forEach(element => {
         element.style.backgroundColor = '#ffcdd2';
     })
+}
+
+const createAlert = () => {
+    
+    let parentContainer = document.getElementById('alert');
+    let errorAlert = document.createElement('div');
+    errorAlert.className = 'm-4 alert alert-danger';
+    errorAlert.role = 'alert';
+    errorAlert.textContent = 'Some fields are missing';
+    
+    parentContainer.appendChild(errorAlert);
 }
