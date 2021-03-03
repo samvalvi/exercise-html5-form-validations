@@ -1,4 +1,7 @@
 let form = document.querySelector("#myForm");
+let resetBtn = document.getElementById("reset");
+let error = false;
+let elements = [];
 
 form.addEventListener('submit', (event)=> {
 
@@ -13,42 +16,55 @@ form.addEventListener('submit', (event)=> {
     let state = document.getElementById('state');
     let postalcode = document.getElementById('postalcode');
     let textarea = document.getElementById('messages');
-    let elements = [];
+    
 
-    if(cardNumber.value.trim() === '') elements.push(cardNumber);
-    if(cvc.value.trim() === '') elements.push(cvc); 
-    if(amount.value.trim() === '') elements.push(amount);
+    if(cardNumber.value.length === 0) elements.push(cardNumber);
+    console.log(cardNumber.value.length)
+    if(cvc.value.length === 0) elements.push(cvc); 
+    if(amount.value.length === 0) elements.push(amount);
 
     if(firstName.value.trim() === '') elements.push(firstName);
     if(lastName.value.trim() === '') elements.push(lastName);
 
     if(city.value.trim() === '') elements.push(city);
     if(state.value.trim() === '') elements.push(state);
-    if(postalcode.value.trim() === '') elements.push(postalcode);
+    if(postalcode.value.length === 0) elements.push(postalcode);
 
     if(textarea.value.trim() === '') elements.push(textarea);
 
+    error = true;
     createAlert();
-
     changeBackgroundColor(elements);
 
     return;
+})
 
+resetBtn.addEventListener('click', ()=> {
+    changeBackgroundColor(elements);
 })
 
 const changeBackgroundColor = elements => {
-    elements.forEach(element => {
-        element.style.backgroundColor = '#ffcdd2';
-    })
+    
+    if(error) {
+        elements.forEach(element => {
+            element.style.backgroundColor = '#ffcdd2';
+            element.disabled = true;
+        })
+    }else {
+        elements.forEach(element => {
+            element.style.backgroundColor = 'white';
+            element.disabled = false;
+        })
+    }
+    error = false;
 }
 
 const createAlert = () => {
-    
-    let parentContainer = document.getElementById('alert');
-    let errorAlert = document.createElement('div');
-    errorAlert.className = 'm-4 alert alert-danger';
-    errorAlert.role = 'alert';
-    errorAlert.textContent = 'Some fields are missing';
-
-    parentContainer.appendChild(errorAlert);
+    if(error){
+        let parentContainer = document.getElementById('alert');
+        return parentContainer.innerHTML = '<div class="alert alert-danger" role="alert" id="alert-msg">Some fields are missing.</div>'
+    }else{
+        let parentContainer = document.getElementById('alert');
+        return parentContainer.innerHTML = '<div class="alert alert-success" role="alert" id="alert-msg">Form was submitted successfully.</div>'
+    }
 }
