@@ -19,7 +19,6 @@ form.addEventListener('submit', (event)=> {
     
 
     if(cardNumber.value.length === 0) elements.push(cardNumber);
-    console.log(cardNumber.value.length)
     if(cvc.value.length === 0) elements.push(cvc); 
     if(amount.value.length === 0) elements.push(amount);
 
