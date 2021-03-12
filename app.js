@@ -1,5 +1,6 @@
 let form = document.querySelector("#myForm");
 let resetBtn = document.getElementById("reset");
+let parentContainer = document.getElementById('alert');
 let error = false;
 let elements = [];
 
@@ -41,6 +42,8 @@ form.addEventListener('submit', (event)=> {
 
 resetBtn.addEventListener('click', ()=> {
     changeBackgroundColor(elements);
+    parentContainer.innerHTML = null;
+
 })
 
 const changeBackgroundColor = elements => {
@@ -61,10 +64,6 @@ const changeBackgroundColor = elements => {
 
 const createAlert = () => {
     if(error){
-        let parentContainer = document.getElementById('alert');
         return parentContainer.innerHTML = '<div class="alert alert-danger" role="alert" id="alert-msg">Some fields are missing.</div>'
-    }else{
-        let parentContainer = document.getElementById('alert');
-        return parentContainer.innerHTML = '<div class="alert alert-success" role="alert" id="alert-msg">Form was submitted successfully.</div>'
     }
 }
