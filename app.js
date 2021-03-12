@@ -4,6 +4,29 @@ let parentContainer = document.getElementById('alert');
 let error = false;
 let elements = [];
 
+
+const changeBackgroundColor = elements => {
+    if(error) {
+        elements.forEach(element => {
+            element.style.backgroundColor = '#ffcdd2';
+            element.disabled = true;
+        })
+
+    }else {
+        elements.forEach(element => {
+            element.style.backgroundColor = 'white';
+            element.disabled = false;
+        })
+    }
+    error = false;
+}
+
+const createAlert = () => {
+    if(error){
+        return parentContainer.innerHTML = '<div class="alert alert-danger" role="alert" id="alert-msg">Some fields are missing.</div>'
+    }
+}
+
 form.addEventListener('submit', (event)=> {
 
     event.preventDefault();
@@ -17,9 +40,8 @@ form.addEventListener('submit', (event)=> {
     let state = document.getElementById('state');
     let postalcode = document.getElementById('postalcode');
     let textarea = document.getElementById('messages');
-    
 
-    if(cardNumber.value.length === 0) elements.push(cardNumber);
+    if(cardNumber.value.length === 0)elements.push(cardNumber);
     if(cvc.value.length === 0) elements.push(cvc); 
     if(amount.value.length === 0) elements.push(amount);
 
@@ -42,27 +64,6 @@ form.addEventListener('submit', (event)=> {
 resetBtn.addEventListener('click', ()=> {
     changeBackgroundColor(elements);
     parentContainer.innerHTML = null;
+    elements=[]
 
 })
-
-const changeBackgroundColor = elements => {
-    
-    if(error) {
-        elements.forEach(element => {
-            element.style.backgroundColor = '#ffcdd2';
-            element.disabled = true;
-        })
-    }else {
-        elements.forEach(element => {
-            element.style.backgroundColor = 'white';
-            element.disabled = false;
-        })
-    }
-    error = false;
-}
-
-const createAlert = () => {
-    if(error){
-        return parentContainer.innerHTML = '<div class="alert alert-danger" role="alert" id="alert-msg">Some fields are missing.</div>'
-    }
-}
